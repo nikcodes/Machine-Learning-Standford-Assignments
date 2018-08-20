@@ -22,17 +22,13 @@ p = zeros(size(X, 1), 1);
 
 %23
 
-for i=1:m,
- t = [1 X(i,:)]'
- a2 = sigmoid(Theta1*t)
- a2_new = [1 a2']'
- a3 = sigmoid(Theta2*a2_new)
- [maxe,ind] = max(a3)
- if ind==10
-  ind=0
- end
- p(i,1)=ind
-end
+X = [ones(m,1) X]
+sec = sigmoid(Theta1 * X')
+sec_mod = [ones(m,1) sec']
+th = sigmoid(Theta2 * sec_mod')
+[maxe,bp]  = max(th)
+p=bp'
+
 
 
 % =========================================================================
